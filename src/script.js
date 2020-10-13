@@ -19,9 +19,6 @@ function renderScene() {
 	requestAnimationFrame(renderScene);
 	renderer.render(scene, camera);
 }
-function switchLuna(){
-	mvluna=!mvluna;
-}
 function main() {
 
 	renderer.setClearColor(0x000000,1.0);
