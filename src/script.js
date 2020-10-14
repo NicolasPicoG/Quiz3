@@ -1,3 +1,4 @@
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
@@ -5,10 +6,14 @@ var tierra;
 var transformacionTierra;
 var step=0;
 var stepluna=0;
+var stepS=0;
+var stepsun=0;
 var mvluna=true;
+var mvsun=true;
 var sol;
 
 main();
+
 
 function renderScene() {
 
@@ -18,27 +23,33 @@ function renderScene() {
 	tierra.animar(step,stepluna);
 	requestAnimationFrame(renderScene);
 	renderer.render(scene, camera);
-	renderer = new THREE.WebGLRenderer({​​​​​ antialias: true }​​​​​);
+
+	stepS+=0.01;
+	if(mvsun) stepsun+=0.15;
+	else stepsun-=0.01;
+	sol.animar2(stepS,stepsun);
+	requestAnimationFrame(renderScene);
+	renderer.render(scene, camera);
 }
 function main() {
 
-	renderer.setClearColor(0x000000,1.0);
+	renderer.setClearColor("#FFFFFF",1.0);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.shadowMapEnabled = false; //no shadow casting
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
 //add sol
-	sol = new Sun(6,'img/sun.jpg');
+	sol = new Sun(6,'texture/sun.jpg');
 	sol.draw(scene);
-
+	
 
 //Add planeta
-	tierra= new Planeta(4,'img/earth.jpg',25);
+	tierra= new Planeta(4,'texture/tierra.jpg',25);
 	sol.addPlaneta(tierra);//añadimos la tierra al sol
 
 
 //Add satelite
-	luna= new Satelite(2,'img/moon.gif',10);
+	luna= new Satelite(2,'texture/moon.gif',10);
 	tierra.addSatelite(luna);//añadimos la luna a la tierra
 
 
@@ -51,8 +62,8 @@ scene.add( pointLight );
 
 
 // Añadir camara
-camera.position.x = -30;
-camera.position.y = 40;
+camera.position.x = -52;
+camera.position.y = 10;
 camera.position.z = 30;
 camera.lookAt(scene.position);
 
