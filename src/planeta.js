@@ -11,8 +11,7 @@ function Planeta(radius,textura,distancia){
 	this.mesh.position.x = distancia;
 	this.mesh.position.y = 0;
 	this.mesh.position.z = 0;
-	//this.mesh.castShadow=true;
-	//this.mesh.receiveShadow = true;
+	
 	this.mesh.name = "Planeta";
 
 	//objeto intermedio para realizar transformaciones
@@ -22,6 +21,7 @@ function Planeta(radius,textura,distancia){
 	this.transformacion.add(this.mesh);
 
 	this.animar=function(step,stepluna){
+		//Se añade la rotación de la tierra
 		this.mesh.rotation.y=step;
 		this.transformacion.rotation.y=step;
 		for(i=0;i<this.satelites.length;i++){
