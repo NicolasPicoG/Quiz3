@@ -18,7 +18,7 @@ function renderScene() {
 	tierra.animar(step,stepluna);
 	requestAnimationFrame(renderScene);
 	renderer.render(scene, camera);
-	renderer = new THREE.WebGLRenderer({​​​​​ antialias: true }​​​​​);
+	
 }
 function main() {
 
