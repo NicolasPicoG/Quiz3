@@ -18,7 +18,7 @@ function renderScene() {
 	tierra.animar(step,stepluna);
 	requestAnimationFrame(renderScene);
 	renderer.render(scene, camera);
-	
+	renderer = new THREE.WebGLRenderer({​​​​​ antialias: true }​​​​​);
 }
 function main() {
 
@@ -26,7 +26,6 @@ function main() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.shadowMapEnabled = false; //no shadow casting
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	
 
 //add sol
 	sol = new Sun(6,'img/sun.jpg');
@@ -58,4 +57,7 @@ camera.position.z = 30;
 camera.lookAt(scene.position);
 
 
+$("#canvas").append(renderer.domElement);
+
+renderScene();
 }
